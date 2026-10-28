@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "杨攀同学",
+  "url": "https://yangpan.com",
+  "description": "杨攀同学的个人网站。"
+}

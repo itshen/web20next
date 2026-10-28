@@ -1,0 +1,7 @@
+---
+import LearnPage from '../../views/LearnPage.astro';
+import { localePaths } from '../../i18n';
+export const getStaticPaths = localePaths;
+const { locale } = Astro.props;
+---
+<LearnPage locale={locale} topic="web-2-0" />

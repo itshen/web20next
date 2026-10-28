@@ -1,0 +1,7 @@
+---
+import DesignSystemPage from '../../views/DesignSystemPage.astro';
+import { localePaths } from '../../i18n';
+export const getStaticPaths = localePaths;
+const { locale } = Astro.props;
+---
+<DesignSystemPage locale={locale} />

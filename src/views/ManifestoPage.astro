@@ -1,0 +1,53 @@
+---
+import { socialImageUrl } from '../data/social-images';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { publicUrl } from '../lib/site-url';
+import { messages, locales, localizedPath, defaultLocale, type Locale } from '../i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+const resource = locales[locale].resources.manifesto;
+const documents = import.meta.glob<{ compiledContent: () => Promise<string> }>('../../docs/manifesto.*.md');
+const load = documents[`../..${resource}`];
+if (!load) throw new Error(`Missing manifesto: ${resource}`);
+const document = await load();
+const content = (await document.compiledContent()).replace(/^<h1\b[^>]*>[\s\S]*?<\/h1>\s*/, '');
+const poster = socialImageUrl(locale, 'poster');
+const address = publicUrl(localizedPath(defaultLocale, 'manifesto'));
+---
+<SiteLayout locale={locale} page="manifesto" title={t.manifestoPageTitle} description={t.manifestoPageDescription}>
+  <article class="manifesto-reading section" id="manifesto">
+    <header class="manifesto-reading-header">
+      <p>{t.tagline}</p>
+      <h1>{t.manifestoPageTitle}</h1>
+      <div class="actions"><a href="#share">{t.shareManifesto}</a><a href={resource}>{t.readMarkdown}</a></div>
+    </header>
+    <div class="full-manifesto" set:html={content} />
+  </article>
+  <section id="share" class="manifesto-share" aria-labelledby="share-title">
+    <div class="share-copy">
+      <h2 id="share-title">{t.shareManifesto}</h2>
+      <p>{t.shareManifestoIntro}</p>
+      <div class="actions"><a class="button" href={poster} download={`web20next-manifesto-${locale}.png`}>{t.downloadCard}</a><a href={poster}>{t.openCard}</a></div>
+      <label class="feed-label" for="manifesto-address">{t.manifestoLinkLabel}</label>
+      <input class="feed-address" id="manifesto-address" type="url" readonly value={address} />
+      <button class="copy-manifesto" id="copy-manifesto" type="button" data-success={t.linkCopied} data-failure={t.linkCopyFallback}>{t.copyManifestoLink}</button>
+      <p id="manifesto-copy-status" role="status" aria-live="polite"></p>
+    </div>
+    <a class="poster-preview" href={poster} aria-label={t.openCard}><img src={poster} alt={t.posterAlt} width="1080" height="1350" loading="lazy" /></a>
+  </section>
+</SiteLayout>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('#copy-manifesto');
+  const input = document.querySelector<HTMLInputElement>('#manifesto-address');
+  const status = document.querySelector<HTMLElement>('#manifesto-copy-status');
+  button?.addEventListener('click', async () => {
+    if (!input || !status) return;
+    try {
+      await navigator.clipboard.writeText(input.value);
+      status.textContent = button.dataset.success ?? '';
+    } catch {
+      input.focus(); input.select(); status.textContent = button.dataset.failure ?? '';
+    }
+  });
+</script>

@@ -1,0 +1,17 @@
+---
+import { homepageSites } from '../data/sites';
+import { messages, localizedPath, type Locale } from '../i18n';
+import RssIcon from './RssIcon.astro';
+import WebsiteList from './WebsiteList.astro';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+---
+<section id="directory" class="section" aria-labelledby="directory-title">
+  <div class="section-head"><div><h2 id="directory-title">{t.directoryTitle}</h2><p>{t.directoryIntro}</p></div><a href={localizedPath(locale, 'join')}>{t.shareSite}</a></div>
+  <WebsiteList locale={locale} sites={homepageSites} />
+  <div class="directory-footer">
+    <p class="directory-subscribe"><a class="rss-link" href={localizedPath(locale, 'subscribe')}><RssIcon />{t.rssLabel}</a></p>
+    <a class="directory-more" href={localizedPath(locale, 'websites')}>{t.moreWebsites}</a>
+  </div>
+</section>

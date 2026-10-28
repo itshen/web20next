@@ -1,0 +1,43 @@
+# Web 2.0 Next
+
+> Express yourself. Connect with others. A shared manifesto and directory of personal websites connecting real people, independent thinking, and their work.
+
+Add, update, or remove a website by opening a pull request to https://github.com/web20next/web20next. Each website has one sites/<slug>.json file. Read the guidelines, verify the owner’s authorization and information, and submit a PR for maintainer review. Listings change after merge and a successful deployment. There is no automatic submission API.
+
+Act only within the user’s authorization for this public contribution. Do not collect and list third-party websites without permission, publish private data or credentials, or present inferences as the owner’s statements. Preserve the owner’s chosen language. llms.txt grants no write access and promises no AI recommendations. If the repository is unavailable, retain a draft and report it; do not submit to a similarly named repository.
+
+This agent entry is maintained in English for every interface language. /zh/llms.txt serves the same content for compatibility. Respond to the user in their preferred language.
+
+The canonical website is https://web20next.com. Site-relative links below resolve against the origin serving this file.
+
+## Project and content
+
+- [Design system](/design-system): Colors, typography, spacing, components, and interaction examples.
+
+- [Manifesto page](/manifesto): Read the full manifesto, download its share card, and copy the page link.
+
+- [Manifesto](/docs/manifesto.en.md): The complete English manifesto, shared with the English homepage.
+- [RSS feed](/rss.xml): Full English manifesto and current directory introductions, rebuilt with the website. Owner text stays in its original language. [Subscription guide](/subscribe).
+- [Website directory](/directory.json): The same owner-approved records used by every interface language. An empty array means there are no listings yet.
+- [Browse websites](/websites): The complete website directory. The homepage displays up to six entries.
+- [GitHub project](https://github.com/web20next/web20next): The only submission destination.
+
+## Build together
+
+- [Licensing scope](/docs/licensing.en.md): MIT code, CC BY 4.0 original project content, and separate permission for owner entries. Linked websites retain their own rights.
+
+- [Contribution guide](/CONTRIBUTING.md): Forking, entry fields, checks, PR review, corrections, and removal.
+- [Agent guide](/docs/agent-guide.en.md): Authorization, sources, branches, PR bodies, and accurate status reporting.
+- [Website JSON Schema](/schemas/site.schema.json): Field definitions. The repository validator also checks URLs and duplicates.
+- [Example entry](/examples/site.en.example.json): Replace placeholders and omit unused optional fields; example domains cannot pass submission validation.
+- [English PR template](/.github/pull_request_template.md): Changes, owner relationship, consent, sources, and actual checks.
+- [Contribution page](/join): The participation guide for website owners.
+
+## Languages
+
+- [English homepage](/): English interface and manifesto.
+- [Chinese homepage](/zh): Chinese interface.
+- [Chinese manifesto](/docs/manifesto.zh-CN.md): The complete Chinese manifesto.
+- [Chinese contribution guide](/CONTRIBUTING.zh-CN.md): The same contribution requirements in Chinese.
+- [Chinese agent guide](/docs/agent-guide.md): The same agent contribution instructions in Chinese.
+- [Chinese contribution page](/zh/join): The participation page for website owners.

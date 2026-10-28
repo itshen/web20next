@@ -1,0 +1,10 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { defaultLocale, localeCodes, messages, localizedPath } from '../i18n';
+---
+<SiteLayout title={messages(defaultLocale).notFoundTitle} noindex>
+  <section class="section not-found">
+    <h1>{messages(defaultLocale).notFoundHeading}</h1>
+    {localeCodes.map((locale) => <div lang={locale}><p>{messages(locale).notFoundText}</p><a href={localizedPath(locale)}>{messages(locale).returnHome}</a></div>)}
+  </section>
+</SiteLayout>

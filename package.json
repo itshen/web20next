@@ -1,0 +1,43 @@
+{
+  "name": "web20next",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^24.14.1"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "node scripts/validate-directory.mjs && astro build",
+    "preview": "astro preview",
+    "preview:cf": "npm run build && wrangler dev",
+    "deploy": "node scripts/check-site-url.mjs && npm run check && npm run build && wrangler deploy",
+    "deploy:dry-run": "npm run build && wrangler deploy --dry-run",
+    "validate:directory": "node scripts/validate-directory.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "generate:social": "node scripts/generate-social.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "astro": "7.4.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@types/node": "24.19.2",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "fast-xml-parser": "5.11.2",
+    "fast-xml-validator": "1.4.2",
+    "playwright": "1.64.1",
+    "typescript": "6.0.3",
+    "wrangler": "4.154.0"
+  },
+  "description": "A shared manifesto and directory of personal websites.",
+  "homepage": "https://web20next.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/web20next/web20next.git"
+  },
+  "license": "SEE LICENSE IN docs/licensing.en.md"
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "你的网站名称",
+  "url": "https://your-site.example/",
+  "description": "用一句话介绍你的网站、作品或长期关注的主题。",
+  "author": "你希望公开的名字",
+  "tags": ["写作", "独立开发"],
+  "rss": "https://your-site.example/feed.xml",
+  "works": [
+    { "title": "一件代表作品", "url": "https://your-site.example/work/" }
+  ]
+}

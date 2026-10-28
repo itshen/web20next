@@ -1,0 +1,10 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "Your website name",
+  "url": "https://your-site.example/",
+  "description": "One sentence about your website, work, or long-term interests.",
+  "author": "Your public display name",
+  "tags": ["Writing", "Independent development"],
+  "rss": "https://your-site.example/feed.xml",
+  "works": [{ "title": "A selected work", "url": "https://your-site.example/work/" }]
+}

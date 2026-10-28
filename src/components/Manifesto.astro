@@ -1,0 +1,29 @@
+---
+import { messages, locales, localizedPath, type Locale } from '../i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+const resource = locales[locale].resources.manifesto;
+const documents = import.meta.glob<{ compiledContent: () => Promise<string> }>('../../docs/manifesto.*.md');
+const load = documents[`../..${resource}`];
+if (!load) throw new Error(`Missing manifesto: ${resource}`);
+const document = await load();
+const compiled = (await document.compiledContent()).replace(/^<h1\b[^>]*>[\s\S]*?<\/h1>\s*/, '');
+// Preserve the shared manifesto text while giving its five principles semantic structure.
+const principle = /<p><strong>([^<]+)<\/strong><br\s*\/?>\s*([\s\S]*?)<\/p>/g;
+let number = 0;
+const withPrinciples = compiled.replace(principle, (_, title, body) => {
+  number += 1;
+  return `<li class="manifesto-principle"><span class="manifesto-number" aria-hidden="true">${String(number).padStart(2, '0')}</span><div><h3>${title}</h3><p>${body}</p></div></li>`;
+});
+const content = withPrinciples.replace(/(?:<li class="manifesto-principle">[\s\S]*?<\/li>\s*)+/, (items) => `<ol class="manifesto-principles" role="list">${items}</ol>`);
+---
+<section id="manifesto" class="section manifesto manifesto-frame" aria-labelledby="manifesto-title">
+  <header class="manifesto-title">
+    <h2 id="manifesto-title">Web 2.0 Next {t.manifesto}</h2>
+  </header>
+  <div class="full-manifesto" set:html={content} />
+  <div class="manifesto-links actions">
+    <a href={localizedPath(locale, 'manifesto')}>{t.manifestoPageLink}</a>
+  </div>
+</section>

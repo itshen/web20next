@@ -1,0 +1,21 @@
+---
+import { messages, type Locale } from '../i18n';
+import type { Website } from '../lib/directory';
+interface Props { locale: Locale; sites: Website[] }
+const { locale, sites } = Astro.props;
+const t = messages(locale);
+---
+  {sites.length > 0 ? (
+    <ul class="directory-list">{sites.map((site) => (
+      <li class="directory-entry">
+        <h3><a href={site.url} rel="ugc">{site.name}</a></h3>
+        {site.author && <p class="site-author">{site.author}</p>}
+        <p>{site.description}</p>
+        {!!site.tags?.length && <ul class="site-tags" aria-label={t.topicsLabel}>{site.tags.map((tag) => <li>{tag}</li>)}</ul>}
+        {!!site.works?.length && <ul class="site-works">{site.works.map((work) => <li><a href={work.url} rel="ugc">{work.title}</a></li>)}</ul>}
+        {site.rss && <a class="text-link" href={site.rss} rel="ugc">{t.subscribe}</a>}
+      </li>
+    ))}</ul>
+  ) : (
+    <div class="empty-directory"><div class="little-home" aria-hidden="true">&#8962;</div><div><h3>{t.directoryEmptyTitle}</h3><p>{t.directoryEmpty1}<br />{t.directoryEmpty2}</p></div><span class="empty-label">{t.directoryEmptyStatus}</span></div>
+  )}

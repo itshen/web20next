@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "歸藏的 AI 资讯",
+  "url": "https://guizang.ai",
+  "description": "歸藏的 AI 资讯。"
+}

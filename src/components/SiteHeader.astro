@@ -1,0 +1,17 @@
+---
+import { messages, localizedPath, type Locale, type Page } from '../i18n';
+import LanguagePicker from './LanguagePicker.astro';
+interface Props { locale: Locale; page: Page }
+const { locale, page } = Astro.props;
+const t = messages(locale);
+const home = localizedPath(locale);
+---
+<header class="wrap nav">
+  <a class="brand" href={home} aria-label={t.homeLabel}>web 2.0<span>Next</span></a>
+  <nav class="nav-links" aria-label={t.navLabel}>
+    <a href={localizedPath(locale, 'manifesto')}>{t.manifesto}</a>
+    <a href={localizedPath(locale, 'websites')}>{t.directory}</a>
+    <a class="nav-join" href={`${home}#join`}>{t.participate}</a>
+  </nav>
+  <LanguagePicker locale={locale} page={page} />
+</header>

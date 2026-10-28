@@ -1,0 +1,57 @@
+---
+import { socialImageUrl } from '../data/social-images';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { publicUrl } from '../lib/site-url';
+import { defaultLocale, locales, localeCodes, localizedPath, feedPath, messages, type Locale, type Page } from '../i18n';
+import '../styles/global.css';
+interface Props { locale?: Locale; page?: Page; title?: string; description?: string; noindex?: boolean }
+const { locale = defaultLocale, page = 'home', noindex = false } = Astro.props;
+const t = messages(locale);
+const title = Astro.props.title ?? t.siteTitle;
+const description = Astro.props.description ?? t.siteDescription;
+const canonical = publicUrl(localizedPath(locale, page));
+const socialImage = publicUrl(socialImageUrl(locale, page === 'manifesto' ? 'manifesto' : 'site'));
+const imageAlt = page === 'manifesto' ? t.ogManifestoAlt : t.ogSiteAlt;
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    {!noindex && <>
+      <link rel="canonical" href={canonical} />
+      <meta property="og:type" content={page === 'manifesto' ? 'article' : 'website'} />
+      <meta property="og:site_name" content="Web 2.0 Next" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:locale" content={locales[locale].socialLocale} />
+      {localeCodes.filter((code) => code !== locale).map((code) => <meta property="og:locale:alternate" content={locales[code].socialLocale} />)}
+      <meta property="og:image" content={socialImage} />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={imageAlt} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={socialImage} />
+      <meta name="twitter:image:alt" content={imageAlt} />
+    </>}
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="describedby" href={locales[locale].resources.llms} type="text/plain" />
+    <link rel="alternate" type="application/rss+xml" title={t.rssTitle} href={feedPath(defaultLocale)} />
+    {!noindex && localeCodes.map((code) => <link rel="alternate" hreflang={code} href={publicUrl(localizedPath(code, page))} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={publicUrl(localizedPath(defaultLocale, page))} />}
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip" href="#main">{t.skip}</a>
+    <SiteHeader locale={locale} page={page} />
+    <main id="main" class="wrap"><slot /></main>
+    <SiteFooter locale={locale} />
+  </body>
+</html>

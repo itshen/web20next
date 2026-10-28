@@ -1,0 +1,59 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { messages, localizedPath, type Locale } from '../i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+const steps = [
+  [t.howStep1Title, t.howStep1Text, t.howStep1More],
+  [t.howStep2Title, t.howStep2Text, t.howStep2More],
+  [t.howStep3Title, t.howStep3Text, t.howStep3More],
+];
+const flow = [
+  [t.howFlowPrepare, t.howFlowPrepareNote],
+  [t.howFlowSubmit, t.howFlowSubmitNote],
+  [t.howFlowReview, t.howFlowReviewNote],
+  [t.howFlowPublish, t.howFlowPublishNote],
+  [t.howFlowListed, t.howFlowListedNote],
+];
+const questions = [
+  [t.howCapabilityTitle, t.howCapabilityText],
+  [t.howOwnershipTitle, t.howOwnershipText],
+  [t.howUpdateTitle, t.howUpdateText],
+];
+---
+<SiteLayout locale={locale} page="how-it-works" title={t.howTitle} description={t.howIntro}>
+  <article class="contribution-page how-page section">
+    <header>
+      <h1>{t.howItWorks}</h1>
+      <p class="contribution-lead">{t.howIntro}</p>
+    </header>
+    <figure class="how-flow" aria-labelledby="how-flow-title">
+      <figcaption id="how-flow-title">{t.howFlowTitle}</figcaption>
+      <ol>
+        {flow.map(([title, note], index) => <li>
+          <span class="how-flow-number" aria-hidden="true">{index + 1}</span>
+          <strong>{title}</strong><span>{note}</span>
+          {index < flow.length - 1 && <svg class="how-flow-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17m-6-6 6 6-6 6" /></svg>}
+        </li>)}
+      </ol>
+    </figure>
+    <div class="how-details">
+      {steps.map(([title, text, more], index) => <section>
+        <h2>{title}</h2><p>{text}</p><p>{more}</p>
+        {index === 0 && <a href="https://github.com/web20next/web20next">{t.howRepository}</a>}
+      </section>)}
+    </div>
+    <section class="how-questions" aria-labelledby="how-questions-title">
+      <h2 id="how-questions-title">{t.howQuestions}</h2>
+      {questions.map(([title, text]) => <div><h3>{title}</h3><p>{text}</p></div>)}
+    </section>
+    <section class="how-next" aria-labelledby="how-next-title">
+      <h2 id="how-next-title">{t.howClosing}</h2>
+      <div class="actions">
+        <a class="button" href={localizedPath(locale, 'join')}>{t.agentAction}</a>
+        <a href={localizedPath(locale, 'websites')}>{t.explore}</a>
+      </div>
+    </section>
+  </article>
+</SiteLayout>

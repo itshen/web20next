@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Hero from '../components/Hero.astro';
+import Directory from '../components/Directory.astro';
+import Manifesto from '../components/Manifesto.astro';
+import JoinSection from '../components/JoinSection.astro';
+import { messages, type Locale } from '../i18n';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+---
+<SiteLayout locale={locale} page="home">
+  <Hero locale={locale} />
+  <div class="principle-strip" aria-label={t.principlesLabel}>
+    <span><svg class="principle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 10 9-7 9 7M5 9v11h5v-7h4v7h5V9" /></svg>{t.principleOwn}</span>
+    <span><svg class="principle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="rotate(-45 12 12)"><path d="M10 8H6a4 4 0 0 0 0 8h4M14 8h4a4 4 0 0 1 0 8h-4M8 12h8" /></g></svg>{t.principleLinks}</span>
+    <span><svg class="principle-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><rect class="principle-eye" x="8" y="8.5" width="2.5" height="7" rx="1.25" /><rect class="principle-eye" x="13.5" y="8.5" width="2.5" height="7" rx="1.25" /></svg>{t.principleAgent}</span>
+  </div>
+  <Manifesto locale={locale} />
+  <Directory locale={locale} />
+  <JoinSection locale={locale} />
+</SiteLayout>

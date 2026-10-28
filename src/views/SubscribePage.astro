@@ -1,0 +1,45 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import RssIcon from '../components/RssIcon.astro';
+import { messages, localizedPath, feedPath, defaultLocale, type Locale } from '../i18n';
+import { publicUrl } from '../lib/site-url';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+const feed = feedPath(defaultLocale);
+const address = publicUrl(feed);
+---
+<SiteLayout locale={locale} page="subscribe" title={`${t.rssLabel} · Web 2.0 Next`} description={t.rssDescription}>
+  <article class="contribution-page section subscription-page">
+    <div class="rss-label"><RssIcon /><span>RSS 2.0</span></div>
+    <h1>{t.rssHeading}</h1>
+    <p class="contribution-lead">{t.rssIntro}</p>
+    <p><a href={localizedPath(locale, 'rss')}>{t.rssIntroLink}</a></p>
+    <p>{t.rssInstructions}</p>
+    <label class="feed-label" for="feed-address">{t.rssAddress}</label>
+    <input id="feed-address" class="feed-address" type="url" readonly value={address} />
+    <div class="actions">
+      <button class="button" id="copy-feed" type="button" data-success={t.rssCopied} data-failure={t.rssCopyFallback}>{t.rssCopy}</button>
+      <a href={feed}>{t.rssOpen}</a>
+    </div>
+    <p id="feed-copy-status" class="feed-copy-status" role="status" aria-live="polite"></p>
+    <section class="agent-guide-callout"><h2>{t.rssIncludesTitle}</h2><p>{t.rssIncludesText}</p><p>{t.rssNotice}</p></section>
+    <section class="agent-guide-callout"><h2>{t.rssAuthorsTitle}</h2><p>{t.rssAuthorsText}</p><a href={localizedPath(locale, 'websites')}>{t.rssDirectoryLink}</a></section>
+  </article>
+</SiteLayout>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('#copy-feed');
+  const input = document.querySelector<HTMLInputElement>('#feed-address');
+  const status = document.querySelector<HTMLElement>('#feed-copy-status');
+  button?.addEventListener('click', async () => {
+    if (!input || !status) return;
+    try {
+      await navigator.clipboard.writeText(input.value);
+      status.textContent = button.dataset.success ?? '';
+    } catch {
+      input.focus();
+      input.select();
+      status.textContent = button.dataset.failure ?? '';
+    }
+  });
+</script>

@@ -1,0 +1,40 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { messages, localizedPath, type Locale, type Page } from '../i18n';
+interface Props { locale: Locale; topic: 'xfn' | 'rss' | 'web-2-0' | 'llms' }
+const { locale, topic } = Astro.props;
+const t = messages(locale);
+const documents = import.meta.glob<{
+  frontmatter: { title: string; description: string };
+  compiledContent: () => Promise<string>;
+}>('../content/learn/*.md');
+const path = `../content/learn/${topic}.${locale}.md`;
+const load = documents[path];
+if (!load) throw new Error(`Missing reading page: ${path}`);
+const document = await load();
+const { title, description } = document.frontmatter;
+const content = await document.compiledContent();
+const related: { page: Page; label: string }[] = [
+  { page: 'web-2-0', label: t.web2Intro },
+  { page: 'rss', label: t.rssIntroLink },
+  { page: 'xfn', label: t.xfnIntro },
+  { page: 'llms', label: t.llmsIntro },
+];
+const nextPage = topic === 'rss' ? 'subscribe' : topic === 'xfn' ? 'websites' : topic === 'llms' ? 'how-it-works' : 'manifesto';
+const nextLabel = topic === 'rss' ? t.rssLabel : topic === 'xfn' ? t.explore : topic === 'llms' ? t.howItWorks : t.readManifesto;
+---
+<SiteLayout locale={locale} page={topic} title={`${title} · Web 2.0 Next`} description={description}>
+  <article class="contribution-page learn-page section">
+    <header>
+      <p class="learn-kicker">{t.footerLearn}</p>
+      <h1>{title}</h1>
+      <p class="contribution-lead">{description}</p>
+    </header>
+    <div class="learn-body" set:html={content} />
+    <nav class="learn-related" aria-label={t.relatedReading}>
+      <h2>{t.relatedReading}</h2>
+      <a href={localizedPath(locale, nextPage)}>{nextLabel}</a>
+      {related.filter(({ page }) => page !== topic).map(({ page, label }) => <a href={localizedPath(locale, page)}>{label}</a>)}
+    </nav>
+  </article>
+</SiteLayout>

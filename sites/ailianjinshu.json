@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "AI 炼金术",
+  "url": "https://ailianjinshu.com",
+  "description": "AI 炼金术的个人网站。"
+}

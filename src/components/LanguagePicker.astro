@@ -1,0 +1,48 @@
+---
+import { localeCodes, locales, messages, localizedPath, type Locale, type Page } from '../i18n';
+interface Props { locale: Locale; page: Page }
+const { locale, page } = Astro.props;
+const t = messages(locale);
+---
+<details class="language-switch" data-language-picker>
+  <summary class="language-trigger" aria-label={`${t.languageLabel}: ${locales[locale].label}`}>
+    <svg class="language-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><path d="M3 12h18" /></svg>
+    <span class="language-current" lang={locale}>{locales[locale].label}</span>
+    <svg class="language-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+  </summary>
+  <nav class="language-menu" aria-label={t.languageLabel}>
+    <ul>{localeCodes.map((code) => <li>
+      <a href={localizedPath(code, page)} lang={code} hreflang={code} aria-current={code === locale ? 'true' : undefined} data-language-link>
+        <span>{locales[code].label}</span>{code === locale && <span class="language-check" aria-hidden="true">✓</span>}
+      </a>
+    </li>)}</ul>
+  </nav>
+</details>
+<script>
+  const pickers = document.querySelectorAll<HTMLDetailsElement>('[data-language-picker]');
+  pickers.forEach((picker) => {
+    const trigger = picker.querySelector<HTMLElement>('summary');
+    picker.addEventListener('toggle', () => {
+      if (picker.open) pickers.forEach((other) => { if (other !== picker) other.open = false; });
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (event.target instanceof Node && !picker.contains(event.target)) picker.open = false;
+    });
+    picker.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && picker.open) {
+        event.preventDefault();
+        picker.open = false;
+        trigger?.focus();
+      }
+    });
+    picker.addEventListener('focusout', (event) => {
+      if (event.relatedTarget instanceof Node && !picker.contains(event.relatedTarget)) picker.open = false;
+    });
+    picker.querySelectorAll<HTMLAnchorElement>('[data-language-link]').forEach((link) => {
+      link.addEventListener('click', () => {
+        link.hash = window.location.hash;
+        picker.open = false;
+      });
+    });
+  });
+</script>

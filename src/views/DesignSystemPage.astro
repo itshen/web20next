@@ -1,0 +1,93 @@
+---
+import { socialImageUrl } from '../data/social-images';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import RssIcon from '../components/RssIcon.astro';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { messages, localizedPath, type Locale } from '../i18n';
+import { palette, spaces, typeScale, radii, tokenValue } from '../data/design-system';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+const sections = [
+  ['identity', t.dsIdentity], ['colors', t.dsColors], ['typography', t.dsTypography],
+  ['spacing', t.dsSpacing], ['surfaces', t.dsSurfaces], ['controls', t.dsControls],
+  ['patterns', t.dsPatterns], ['media', t.dsMedia], ['accessibility', t.dsAccess],
+];
+const images = [
+  { kind: 'poster' as const, title: t.dsPoster, alt: t.posterAlt, width: 1080, height: 1350 },
+  { kind: 'site' as const, title: t.dsSiteOg, alt: t.ogSiteAlt, width: 1200, height: 630 },
+  { kind: 'manifesto' as const, title: t.dsManifestoOg, alt: t.ogManifestoAlt, width: 1200, height: 630 },
+];
+---
+<SiteLayout locale={locale} page="design-system" title={t.dsTitle} description={t.dsIntro}>
+  <header class="ds-header">
+    <div><h1>{t.designSystem}</h1><p class="contribution-lead">{t.dsIntro}</p></div>
+    <div class="ds-brand-tile" aria-hidden="true"><span class="brand">web 2.0<span>Next</span></span><span class="web-badge blue">{t.personalWebsitesBadge}</span></div>
+  </header>
+  <div class="ds-layout">
+    <nav class="ds-toc" aria-label={t.dsNav}>{sections.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}</nav>
+    <div class="ds-content">
+      <section id="identity" class="ds-section" aria-labelledby="ds-identity">
+        <h2 id="ds-identity">{t.dsIdentity}</h2><p class="ds-section-intro">{t.dsIdentityText}</p>
+        <div class="ds-specimen ds-identity"><a class="brand" href={localizedPath(locale)}>web 2.0<span>Next</span></a><div class="badges"><span class="web-badge blue">{t.personalWebsitesBadge}</span><span class="web-badge">{t.connected}</span></div></div>
+        <p>{t.dsBrandNote}</p><p>{t.dsVoice}</p>
+      </section>
+      <section id="colors" class="ds-section" aria-labelledby="ds-colors">
+        <h2 id="ds-colors">{t.dsColors}</h2><p class="ds-section-intro">{t.dsColorsText}</p>
+        <div class="ds-palette">{palette.map((color) => <figure class="ds-color"><div class={`ds-swatch ds-swatch-${color.name}`} aria-hidden="true"></div><figcaption><strong>{t[color.label]}</strong><code>{color.token}</code><span>{tokenValue(color.token)}</span></figcaption></figure>)}</div>
+      </section>
+      <section id="typography" class="ds-section" aria-labelledby="ds-typography">
+        <h2 id="ds-typography">{t.dsTypography}</h2><p class="ds-section-intro">{t.dsTypeText}</p>
+        <dl class="ds-definitions"><div><dt>{t.dsFontBody}</dt><dd><code>{tokenValue('--font')}</code></dd></div><div><dt>{t.dsFontBrand}</dt><dd><code>{tokenValue('--font-brand')}</code></dd></div><div><dt>{t.dsReadingLine}</dt><dd>{tokenValue('--leading-body')} / {tokenValue('--leading-reading')}</dd></div></dl>
+        <div class="ds-type-scale">{typeScale.map((type) => <div class="ds-type-row"><div class="ds-type-meta"><strong>{t[type.label]}</strong><code>{type.token}</code><span>{tokenValue(type.token)}</span></div><p class={`ds-type-${type.name}`}>{t.dsTypeSample}</p></div>)}</div>
+      </section>
+      <section id="spacing" class="ds-section" aria-labelledby="ds-spacing">
+        <h2 id="ds-spacing">{t.dsSpacing}</h2><p class="ds-section-intro">{t.dsSpacingText}</p>
+        <div class="ds-space-scale">{spaces.map((space) => <div class="ds-space-row"><code>--space-{space}</code><span>{tokenValue(`--space-${space}`)}</span><i class={`ds-space-bar ds-space-${space}`} aria-hidden="true"></i></div>)}</div>
+        <dl class="ds-definitions"><div><dt>{t.dsContainer}</dt><dd>{tokenValue('--content-width')}</dd></div><div><dt>{t.dsReadingWidth}</dt><dd>{tokenValue('--reading-width')}</dd></div></dl><p>{t.dsResponsive}</p>
+      </section>
+      <section id="surfaces" class="ds-section" aria-labelledby="ds-surfaces">
+        <h2 id="ds-surfaces">{t.dsSurfaces}</h2><p class="ds-section-intro">{t.dsSurfacesText}</p>
+        <div class="ds-radii">{radii.map((radius) => <figure><div class={`ds-radius ds-radius-${radius}`} aria-hidden="true"></div><figcaption><code>--radius-{radius}</code><span>{tokenValue(`--radius-${radius}`)}</span></figcaption></figure>)}</div>
+        <div class="ds-depth"><div class="ds-gradient-sample"><span>{t.dsSurfaceButton}</span><code>--gradient-button</code></div><div class="ds-shadow-sample"><span>{t.dsSurfacePoster}</span><code>--shadow-poster</code></div></div>
+        <div class="manifesto-frame ds-manifesto-frame"><strong>{t.manifesto}</strong><p>{t.tagline}</p></div>
+      </section>
+      <section id="controls" class="ds-section" aria-labelledby="ds-controls">
+        <h2 id="ds-controls">{t.dsControls}</h2><p class="ds-section-intro">{t.dsControlsText}</p>
+        <div class="ds-control-grid">
+          {[['', t.dsDefault], ['is-hover', t.dsHover], ['is-focus', t.dsFocus]].map(([state, label]) => <div><span class="ds-example-label">{label}</span><button class={`button ${state}`} type="button" data-demo-button>{t.dsDemoAction}</button></div>)}
+          <div><span class="ds-example-label">{t.dsDisabled}</span><button class="button" type="button" disabled>{t.dsDemoAction}</button></div>
+        </div>
+        <p class="ds-feedback" id="ds-feedback" role="status" aria-live="polite" data-success={t.dsDemoDone}>{t.dsDemoHint}</p>
+        <div class="ds-specimen"><a href={localizedPath(locale, 'manifesto')}>{t.readManifesto}</a><a class="rss-link" href={localizedPath(locale, 'subscribe')}><RssIcon />{t.rssLabel}</a></div>
+        <div class="ds-input-grid"><div><label class="feed-label" for="ds-website">{t.dsInputLabel}</label><input class="feed-address" type="url" id="ds-website" placeholder={t.dsInputPlaceholder} aria-describedby="ds-input-hint" /><p id="ds-input-hint" class="ds-hint">{t.dsInputHint}</p></div><div><label class="feed-label" for="ds-unavailable">{t.dsDisabled}</label><input class="feed-address" id="ds-unavailable" disabled value="https://your-website.com" /></div></div>
+        <p class="ds-example-label">{t.languageLabel}</p>
+        <div class="ds-language-example"><LanguagePicker locale={locale} page="design-system" /></div>
+      </section>
+      <section id="patterns" class="ds-section" aria-labelledby="ds-patterns">
+        <h2 id="ds-patterns">{t.dsPatterns}</h2><p class="ds-section-intro">{t.dsPatternsText}</p>
+        <p class="ds-example-label">{t.dsDemoLabel}</p>
+        <article class="directory-entry"><h3><a href={localizedPath(locale, 'manifesto')}>{t.dsDemoSite}</a></h3><p>{t.dsDemoDescription}</p><ul class="site-tags" aria-label={t.topicsLabel}><li>{t.dsTagWriting}</li><li>{t.dsTagMaking}</li></ul><a class="rss-link" href={localizedPath(locale, 'subscribe')}><RssIcon />{t.rssLabel}</a></article>
+        <div class="empty-directory ds-empty"><div class="little-home" aria-hidden="true">⌂</div><div><h3>{t.directoryEmptyTitle}</h3><p>{t.directoryEmpty1}</p></div><span class="empty-label">{t.directoryEmptyStatus}</span></div>
+        <div class="ds-specimen"><span class="hello">{t.heroBadge}</span><div class="badges"><span class="web-badge blue">{t.personalWebsitesBadge}</span><span class="web-badge">{t.connected}</span></div></div>
+        <h3>{t.dsFooterTitle}</h3><p>{t.dsFooterText}</p><a href="#site-footer">{t.dsFooterLink}</a>
+      </section>
+      <section id="media" class="ds-section" aria-labelledby="ds-media">
+        <h2 id="ds-media">{t.dsMedia}</h2><p class="ds-section-intro">{t.dsMediaText}</p>
+        <div class="ds-media-grid">{images.map((item) => <figure class={`ds-media-${item.kind}`}><a href={socialImageUrl(locale, item.kind)}><img src={socialImageUrl(locale, item.kind)} alt={item.alt} width={item.width} height={item.height} loading="lazy" /></a><figcaption><strong>{item.title}</strong><span>{item.width} × {item.height} · PNG</span></figcaption></figure>)}</div>
+      </section>
+      <section id="accessibility" class="ds-section" aria-labelledby="ds-accessibility">
+        <h2 id="ds-accessibility">{t.dsAccess}</h2><p class="ds-section-intro">{t.dsAccessText}</p><p>{t.dsAccessTry}</p>
+        <a class="button" href="#identity">{t.dsIdentity}</a>
+      </section>
+    </div>
+  </div>
+</SiteLayout>
+<script>
+  const feedback = document.querySelector<HTMLElement>('#ds-feedback');
+  document.querySelectorAll<HTMLButtonElement>('[data-demo-button]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (feedback) feedback.textContent = feedback.dataset.success ?? '';
+    });
+  });
+</script>

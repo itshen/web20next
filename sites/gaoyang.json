@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "高阳",
+  "url": "https://gaoyang.dev",
+  "description": "高阳的个人网站。"
+}

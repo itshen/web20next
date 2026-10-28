@@ -1,0 +1,7 @@
+---
+import SubscribePage from '../../views/SubscribePage.astro';
+import { localePaths } from '../../i18n';
+export const getStaticPaths = localePaths;
+const { locale } = Astro.props;
+---
+<SubscribePage locale={locale} />

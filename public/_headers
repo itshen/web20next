@@ -1,0 +1,28 @@
+/docs/*
+  Content-Type: text/markdown; charset=utf-8
+
+/CONTRIBUTING.zh-CN.md
+  Content-Type: text/markdown; charset=utf-8
+
+/CONTRIBUTING.md
+  Content-Type: text/markdown; charset=utf-8
+
+/.github/*
+  Content-Type: text/markdown; charset=utf-8
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/*/llms.txt
+  Content-Type: text/plain; charset=utf-8
+
+/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/*/rss.xml
+  Content-Type: application/rss+xml; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/LICENSE*
+  Content-Type: text/plain; charset=utf-8

@@ -1,0 +1,44 @@
+---
+import { messages, localizedPath, type Locale } from '../i18n';
+import RssIcon from './RssIcon.astro';
+import GithubIcon from './GithubIcon.astro';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+---
+<footer id="site-footer" class="wrap footer">
+  <div class="footer-identity">
+    <a class="brand footer-brand" href={localizedPath(locale)}>web 2.0<span>Next</span></a>
+    <p>{t.tagline}</p>
+    <div class="footer-utilities">
+      <a class="github-link" href="https://github.com/web20next/web20next" aria-label={t.github}><GithubIcon />GitHub</a>
+      <a class="rss-link" href={localizedPath(locale, 'subscribe')}><RssIcon />{t.rssLabel}</a>
+    </div>
+    <p class="footer-credit">{t.initiatorLabel} <a href="https://nexttoken.tv">{t.initiatorName}</a></p>
+    <div class="badges footer-badges"><span class="web-badge blue">{t.personalWebsitesBadge}</span></div>
+  </div>
+  <nav class="footer-groups" aria-label={t.footerNav}>
+    <div class="footer-group">
+      <h2>{t.footerLearn}</h2>
+      <ul>
+        <li><a href={localizedPath(locale, 'web-2-0')}>{t.web2Intro}</a></li>
+        <li><a href={localizedPath(locale, 'rss')}>{t.rssIntroLink}</a></li>
+        <li><a href={localizedPath(locale, 'xfn')}>{t.xfnIntro}</a></li>
+      </ul>
+    </div>
+    <div class="footer-group">
+      <h2>{t.footerAgents}</h2>
+      <ul>
+        <li><a href={localizedPath(locale, 'llms')}>{t.llmsIntro}</a></li>
+      </ul>
+    </div>
+    <div class="footer-group">
+      <h2>{t.footerProject}</h2>
+      <ul>
+        <li><a href={localizedPath(locale, 'how-it-works')}>{t.howItWorks}</a></li>
+        <li><a href={localizedPath(locale, 'join')}>{t.shareSite}</a></li>
+        <li><a href={localizedPath(locale, 'design-system')}>{t.designSystem}</a></li>
+      </ul>
+    </div>
+  </nav>
+</footer>

@@ -1,0 +1,52 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { messages, localizedPath, type Locale } from '../i18n';
+import { publicSite } from '../lib/site-url';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = messages(locale);
+const prompt = t.agentPrompt.replace('{site}', publicSite);
+---
+<SiteLayout locale={locale} page="join" title={t.contributeTitle} description={t.contributeDescription}>
+  <article class="contribution-page agent-handoff section">
+    <header class="agent-handoff-intro">
+      <h1>{t.contributeLine1}<br />{t.contributeLine2}</h1>
+      <p class="contribution-lead">{t.contributeIntro}</p>
+      <p class="agent-explanation"><a href={localizedPath(locale, 'how-it-works')}>{t.howItWorks}</a></p>
+    </header>
+    <section id="agent-guide" class="agent-message" aria-labelledby="agent-message-title">
+      <div class="agent-message-header">
+        <h2 id="agent-message-title">{t.agentHeading}</h2>
+      </div>
+      <div id="agent-message-text" class="feed-address agent-message-text" role="textbox" aria-readonly="true" aria-multiline="true" aria-labelledby="agent-message-title" tabindex="0">{prompt}</div>
+      <div class="agent-message-footer">
+        <p id="agent-message-status" class="feed-copy-status" role="status" aria-live="polite"></p>
+        <button type="button" class="button" id="copy-agent-message" data-success={t.agentCopied} data-failure={t.agentCopyFallback}>{t.agentCopy}</button>
+      </div>
+    </section>
+    <div class="agent-handoff-notes">
+      <p class="agent-ownership">{t.agentOutro}</p>
+      <div class="agent-handoff-links"><a href={localizedPath(locale, 'manifesto')}>{t.startManifesto}</a><a href={localizedPath(locale, 'websites')}>{t.explore}</a></div>
+    </div>
+  </article>
+</SiteLayout>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('#copy-agent-message');
+  const message = document.querySelector<HTMLElement>('#agent-message-text');
+  const status = document.querySelector<HTMLElement>('#agent-message-status');
+  button?.addEventListener('click', async () => {
+    if (!message || !status) return;
+    try {
+      await navigator.clipboard.writeText(message.textContent ?? '');
+      status.textContent = button.dataset.success ?? '';
+    } catch {
+      message.focus();
+      const range = document.createRange();
+      range.selectNodeContents(message);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      status.textContent = button.dataset.failure ?? '';
+    }
+  });
+</script>

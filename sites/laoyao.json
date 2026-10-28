@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "姚金刚的思考空间",
+  "url": "https://www.laoyao.cn",
+  "description": "姚金刚的思考空间。"
+}

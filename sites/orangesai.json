@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "Orange.AI",
+  "url": "https://orangesai.com",
+  "description": "Orange.AI 的个人网站。"
+}

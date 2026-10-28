@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "Koji",
+  "url": "https://kojiyang.me",
+  "description": "Koji 的个人网站。"
+}

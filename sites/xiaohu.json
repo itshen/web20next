@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "小互 · AI 解读站",
+  "url": "https://xiaohu.ai",
+  "description": "小互的 AI 解读站。"
+}

@@ -1,0 +1,6 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "向阳乔木 · AI 实践笔记",
+  "url": "https://qiaomu.ai",
+  "description": "向阳乔木的 AI 实践笔记。"
+}
