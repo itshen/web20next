@@ -33,16 +33,16 @@
 
 - 首页和加入页以把网站交给 Agent 为主要引导；独立“如何运作”页明确解释 Agent 读取规则、准备 JSON、通过 GitHub PR 提交、自动检查、维护者审核、合并和部署后进入名录的实际机制。首页和加入页正文不展开技术流程。页脚以“面向 Agent / For agents”为独立小节标题，与“了解开放网络”和“项目”同级，提供“什么是 llms.txt？ / What is llms.txt?”介绍页入口；介绍页按阅读语言本地化，实际文件链接统一指向英文 `/llms.txt`。保留 head 发现声明、Agent 文档和开源项目链接。
 
-- 加入、更新和移除网站默认遵循 `CONTRIBUTING.md` 与 `docs/agent-guide.en.md`；中文参考 `CONTRIBUTING.zh-CN.md` 与 `docs/agent-guide.md`，通过 GitHub PR 完成。
+- 加入、更新和移除网站默认遵循 `CONTRIBUTING.md` 与 `docs/agent-guide.en.md`；中文参考 `CONTRIBUTING.zh-Hans.md` 与 `docs/agent-guide.md`，通过 GitHub PR 完成。
 - 名录文件位于 `sites/<slug>.json`，字段以 `schemas/site.schema.json` 为准；不要修改校验器来绕过投稿限制。
 - 提交前运行 `npm run validate:directory`、`npm test`、`npm run check` 和 `npm run build`。
-- PR 正文默认使用 `.github/pull_request_template.md`，中文可使用 `.github/PULL_REQUEST_TEMPLATE/site.zh-CN.md`；如实填写授权、来源和验证结果；不发布私人证明或凭据。
+- PR 正文默认使用 `.github/pull_request_template.md`，中文可使用 `.github/PULL_REQUEST_TEMPLATE/site.zh-Hans.md`；如实填写授权、来源和验证结果；不发布私人证明或凭据。
 
 ## 国际化
 
 - 本站 URL 统一不带末尾斜线：正式首页写作 `https://web20next.com`，页面路径使用 `/manifesto`、`/zh` 等形式。显示、复制、Agent 指令、canonical、Open Graph、文档和生成资源遵循同一规则；绝对公开链接通过 `publicUrl()` 生成。根路径相对链接 `/` 是必要的例外。保留查询参数和锚点，不改写外部网站地址。Astro 与 Cloudflare 配置共同处理无末尾斜线的页面路由。
 
-- 默认英文无路径前缀，中文使用 `/zh`；语言配置以 `src/i18n/index.ts` 为准。仓库默认 `README.md`、`CONTRIBUTING.md` 与 `.github/pull_request_template.md` 使用英文；中文贡献指南为 `CONTRIBUTING.zh-CN.md`，中文 PR 模板为 `.github/PULL_REQUEST_TEMPLATE/site.zh-CN.md`。
+- 默认英文无路径前缀，简体中文的语言标识与文件名使用 `zh-Hans`，阅读路径使用 `/zh`；Open Graph 按其格式保留 `zh_CN`；语言配置以 `src/i18n/index.ts` 为准。仓库默认 `README.md`、`CONTRIBUTING.md` 与 `.github/pull_request_template.md` 使用英文；中文贡献指南为 `CONTRIBUTING.zh-Hans.md`，中文 PR 模板为 `.github/PULL_REQUEST_TEMPLATE/site.zh-Hans.md`。
 - 指令性、功能性及面向 Agent 的站内链接统一使用无语言前缀的地址，不附加 `/zh` 或其他语言路径；包括 Agent 消息中的网站地址、分享与复制链接、订阅地址、llms.txt 和机器读取入口。对外地址使用正式域名 `https://web20next.com`。阅读页面导航、语言切换及对应语言页面的 canonical 保留正确的语言路径。
 - 界面文案通过语言字典维护，不在页面组件里硬编码单一语言。保持中英文的共建立场和相同投稿规则。
 - 中英文严格对应事实、动作、条件和确定程度；英文使用自然表达，不机械逐字翻译。中文中的 Agent、Feed 使用该大小写，英文遵循普通句式大小写。术语及审校范围见 [国际化约定](docs/i18n.md)。

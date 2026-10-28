@@ -34,7 +34,7 @@
 - 更新：`fix(directory): update <slug>`
 - 移除：`chore(directory): remove <slug>`
 
-以 `.github/PULL_REQUEST_TEMPLATE/site.zh-CN.md` 为正文基础，按实际情况填写变更、站主关系、公开收录授权、来源、验证结果和 Agent 参与情况。把完整正文保存到临时文件，保留换行。
+以 `.github/PULL_REQUEST_TEMPLATE/site.zh-Hans.md` 为正文基础，按实际情况填写变更、站主关系、公开收录授权、来源、验证结果和 Agent 参与情况。把完整正文保存到临时文件，保留换行。
 
 通过 GitHub CLI 创建 PR 时使用 `gh pr create`，配合 `--repo web20next/web20next`、`--base` 指定刚读取的默认分支、`--head` 指定实际的 `fork所有者:工作分支`、`--title` 指定标题，以及 `--body-file` 指定正文文件。先提交并推送工作分支，再创建 PR。`gh` 命令应在沙箱外执行。认证缺失时使用正常登录流程，不读取或输出已有凭据。
 

@@ -42,8 +42,8 @@ test('identifiers stay stable across edits and repeated builds', async () => {
 });
 
 test('Chinese feed localizes channel and manifesto without translating owner text', async () => {
-  const { channel } = parser.parse(await createFeed('zh-CN', origin, '<p>中文宣言</p>', records)).rss;
-  assert.equal(channel.language, 'zh-CN');
+  const { channel } = parser.parse(await createFeed('zh-Hans', origin, '<p>中文宣言</p>', records)).rss;
+  assert.equal(channel.language, 'zh-Hans');
   assert.equal(channel.link, 'https://web.test/zh');
   assert.equal(channel['atom:link']['@_href'], 'https://web.test/zh/rss.xml');
   assert.equal(channel.item[0].title, 'Alice & Bob');

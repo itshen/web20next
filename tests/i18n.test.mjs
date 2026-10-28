@@ -7,9 +7,9 @@ test('English is the default and Chinese has its own stable prefix', () => {
   assert.equal(defaultLocale, 'en');
   assert.equal(localizedPath('en'), '/');
   assert.equal(localizedPath('en', 'join'), '/join');
-  assert.equal(localizedPath('zh-CN'), '/zh');
-  assert.equal(localizedPath('zh-CN', 'join'), '/zh/join');
-  assert.deepEqual(localePaths().find((path) => path.props.locale === 'zh-CN'), { params: { locale: 'zh' }, props: { locale: 'zh-CN' } });
+  assert.equal(localizedPath('zh-Hans'), '/zh');
+  assert.equal(localizedPath('zh-Hans', 'join'), '/zh/join');
+  assert.deepEqual(localePaths().find((path) => path.props.locale === 'zh-Hans'), { params: { locale: 'zh' }, props: { locale: 'zh-Hans' } });
   assert.equal(localePaths().length, localeCodes.length - 1);
   assert.ok(localePaths().every((path) => path.props.locale !== defaultLocale));
 });
@@ -44,7 +44,7 @@ test('reading translations preserve section structure and reference links', asyn
 });
 
 test('the manifesto and interface use the same approved slogan', async () => {
-  const approved = { 'zh-CN': '表达自我，连接彼此。', en: 'Express yourself. Connect with others.' };
+  const approved = { 'zh-Hans': '表达自我，连接彼此。', en: 'Express yourself. Connect with others.' };
   for (const locale of localeCodes) {
     const t = messages(locale);
     const normalize = (value) => value.replace(/\s+/g, '');

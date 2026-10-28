@@ -864,7 +864,7 @@ html.social-card-document body { line-height:normal; width:100vw; height:100vh}
 .sc-site .sc-site-headline:lang(en) { max-width:710px; font-size:70px}
 .sc-poster:lang(en) h1 { max-width:750px}
 .sc-poster:lang(en) .sc-principles li { padding-top:29px; padding-bottom:29px}
-.sc-poster:lang(zh-CN) .sc-principles li { font-size:36px; padding-top:25px; padding-bottom:25px}
+.sc-poster:lang(zh-Hans) .sc-principles li { font-size:36px; padding-top:25px; padding-bottom:25px}
 .sc-poster .sc-subtitle, .sc-manifesto .sc-subtitle { align-self:flex-start; padding:8px 16px; background:var(--green); color:var(--ink); border-radius:var(--radius-small)}
 .sc-principles li { padding-left:60px }
 .sc-principles li:before { width:42px; height:42px; display:grid; place-items:center; background:var(--green); border-radius:var(--radius-small); top:50%; transform:translateY(-50%); line-height:1 }

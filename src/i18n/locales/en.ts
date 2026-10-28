@@ -1,4 +1,4 @@
-import type zh from './zh-CN';
+import type zh from './zh-Hans';
 
 const sloganLines = ["Express yourself.","Connect with others."] as const;
 const slogan = sloganLines.join(" ");

@@ -1,6 +1,6 @@
 # Contributing to Web 2.0 Next
 
-English · [简体中文](CONTRIBUTING.zh-CN.md)
+English · [简体中文](CONTRIBUTING.zh-Hans.md)
 
 We use GitHub pull requests to add, update, and remove personal websites. Each entry represents a real person and information they have chosen to share publicly.
 

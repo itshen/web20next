@@ -37,7 +37,7 @@ The canonical website is https://web20next.com. Site-relative links below resolv
 
 - [English homepage](/): English interface and manifesto.
 - [Chinese homepage](/zh): Chinese interface.
-- [Chinese manifesto](/docs/manifesto.zh-CN.md): The complete Chinese manifesto.
-- [Chinese contribution guide](/CONTRIBUTING.zh-CN.md): The same contribution requirements in Chinese.
+- [Chinese manifesto](/docs/manifesto.zh-Hans.md): The complete Chinese manifesto.
+- [Chinese contribution guide](/CONTRIBUTING.zh-Hans.md): The same contribution requirements in Chinese.
 - [Chinese agent guide](/docs/agent-guide.md): The same agent contribution instructions in Chinese.
 - [Chinese contribution page](/zh/join): The participation page for website owners.

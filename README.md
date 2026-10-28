@@ -1,6 +1,6 @@
 # Web 2.0 Next
 
-English · [简体中文](README.zh-CN.md)
+English · [简体中文](README.zh-Hans.md)
 
 **Express yourself. Connect with others.**
 

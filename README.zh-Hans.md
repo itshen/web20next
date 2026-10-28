@@ -20,7 +20,7 @@ Web 2.0 Next 是一个以宣言与个人网站名录为核心的共建项目：�
 
 - [Agent 工作约定](AGENTS.md)：项目固定要求、规范入口与验证边界。
 - [双语网站审校 skill](.agents/skills/review-bilingual-site/SKILL.md)：中英文语义对齐、自然表达与跨页面、分享图片同步检查，可用于其他双语网站。
-- [宣言](docs/manifesto.zh-CN.md)：完整中文宣言，也是中文页面与分享图片的内容来源。
+- [宣言](docs/manifesto.zh-Hans.md)：完整中文宣言，也是中文页面与分享图片的内容来源。
 - [视觉与交互约定](docs/visual-direction.md)：当前配色、布局、图标、页脚和消息复制区规范。
 - [设计系统](https://web20next.com/design-system)：网站的设计变量与组件示例。本地通过 `npm run dev` 预览；默认语言入口为 `src/pages/index.astro`，页面共用 `src/views/` 组件。
 
@@ -30,9 +30,9 @@ Web 2.0 Next 是一个以宣言与个人网站名录为核心的共建项目：�
 
 网站通过 GitHub Pull Request 加入、更新或移除名录。每个网站对应 `sites/<slug>.json`，由站主或获授权者提交；维护者审核合并并成功部署后更新网站。
 
-- [贡献指南](CONTRIBUTING.zh-CN.md)：字段、提交、审核、更正和移除规则。
+- [贡献指南](CONTRIBUTING.zh-Hans.md)：字段、提交、审核、更正和移除规则。
 - [Agent 投稿指南](docs/agent-guide.md)：Agent 的资料核实与 PR 提交约定。
-- [PR 模板](.github/PULL_REQUEST_TEMPLATE/site.zh-CN.md)、[资料示例](examples/site.example.json)与 [JSON Schema](schemas/site.schema.json)。
+- [PR 模板](.github/PULL_REQUEST_TEMPLATE/site.zh-Hans.md)、[资料示例](examples/site.example.json)与 [JSON Schema](schemas/site.schema.json)。
 - 网站 `/llms.txt` 提供 Agent 发现入口，`/directory.json` 导出与页面相同的名录。
 - 正式名录由 `sites/*.json` 提供；示例文件不进入正式名录。
 - 背景介绍：`/xfn`、`/rss`、`/web-2-0`、`/llms`，支持中文对应页面。页脚保留品牌、GitHub、RSS 入口与个人网站徽章，其余链接按了解开放网络、面向 Agent、项目三个小节展示，RSS 订阅页提供介绍入口。

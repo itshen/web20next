@@ -8,13 +8,13 @@ Web 2.0 Next 通过 GitHub Pull Request 接收个人网站的加入、更新和�
 
 ## 分享你的网站
 
-1. 阅读[宣言](docs/manifesto.zh-CN.md)。确认你是站主，或已经获得站主对本次公开收录的明确授权。网站本身公开不等于同意加入名录。
+1. 阅读[宣言](docs/manifesto.zh-Hans.md)。确认你是站主，或已经获得站主对本次公开收录的明确授权。网站本身公开不等于同意加入名录。
 2. 检查 `sites/` 下的现有文件，避免重复提交。已收录的网站应更新原文件。
 3. Fork 仓库，从上游当前默认分支创建工作分支，例如 `add-site/my-site`。
 4. 复制 [JSON 示例](examples/site.example.json) 到 `sites/<slug>.json`。将所有示例值替换为真实资料；没有的可选字段直接删除。每个文件只描述一个网站。
 5. 执行 `npm ci`、`npm run validate:directory`、`npm test`、`npm run check` 和 `npm run build`。
 6. 使用 Conventional Commits，例如 `feat(directory): add my-site`。原则上一个 PR 处理一个网站，避免混入无关代码或资料。
-7. 向 `web20next/web20next` 的当前默认分支提交 PR，并填写 [PR 模板](.github/PULL_REQUEST_TEMPLATE/site.zh-CN.md)。说明与站主的关系、公开收录授权、可公开的资料来源和实际检查结果。中英文模板要求提供相同的信息。
+7. 向 `web20next/web20next` 的当前默认分支提交 PR，并填写 [PR 模板](.github/PULL_REQUEST_TEMPLATE/site.zh-Hans.md)。说明与站主的关系、公开收录授权、可公开的资料来源和实际检查结果。中英文模板要求提供相同的信息。
 8. 等待维护者审核；按反馈修改同一个 PR。合并后，网站会在下一次成功部署时进入名录。提交成功、合并成功、上线成功是不同状态。
 
 如果仓库暂时无法访问，先保留资料文件和 PR 正文，不要向相似名称的仓库投稿，也不要声称已经完成提交。

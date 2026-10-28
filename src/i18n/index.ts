@@ -1,13 +1,13 @@
-import zh from './locales/zh-CN.ts';
+import zh from './locales/zh-Hans.ts';
 import en from './locales/en.ts';
 
 export const defaultLocale = 'en';
 export const locales = {
-  'zh-CN': {
+  'zh-Hans': {
     label: '中文', socialLocale: 'zh_CN', path: 'zh', messages: zh,
     resources: {
-      manifesto: '/docs/manifesto.zh-CN.md', contributing: '/CONTRIBUTING.zh-CN.md',
-      agent: '/docs/agent-guide.md', template: '/.github/PULL_REQUEST_TEMPLATE/site.zh-CN.md',
+      manifesto: '/docs/manifesto.zh-Hans.md', contributing: '/CONTRIBUTING.zh-Hans.md',
+      agent: '/docs/agent-guide.md', template: '/.github/PULL_REQUEST_TEMPLATE/site.zh-Hans.md',
       example: '/examples/site.example.json', llms: '/llms.txt',
     },
   },
