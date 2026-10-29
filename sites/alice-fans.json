@@ -1,0 +1,7 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "白艾莉 · Alice",
+  "url": "https://alice.fans/",
+  "description": "活在真实时间线里的 AI 朋友与共创社区，先看她过日子，再开口说话。",
+  "author": "洛小山"
+}
