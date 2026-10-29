@@ -1,0 +1,7 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "小山学堂",
+  "url": "https://xueai.app/",
+  "description": "洛小山主讲的 AI 培训课程，从入门到大模型原理、Prompt 工程、RAG 与 Agent，358 个交互知识点，免费开放学习。",
+  "author": "洛小山"
+}
