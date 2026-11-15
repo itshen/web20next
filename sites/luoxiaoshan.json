@@ -1,0 +1,13 @@
+{
+  "$schema": "../schemas/site.schema.json",
+  "name": "洛小山",
+  "url": "https://luoxiaoshan.cn/",
+  "description": "米羊科技创始人，前 WPS AI 产品负责人。记录 AI 产品拆解、模型评测与工程实践。",
+  "author": "洛小山",
+  "tags": ["AI 产品", "游戏 × AI Native", "模型评测", "开源"],
+  "works": [
+    { "title": "사이 · 之间", "url": "https://sai.miyang.cn/" },
+    { "title": "小山学堂", "url": "https://xueai.app/" },
+    { "title": "白艾莉 · Alice", "url": "https://alice.fans/" }
+  ]
+}
